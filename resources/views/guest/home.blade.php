@@ -18,7 +18,7 @@
                             @if ($train->in_time === 1)
                                 <p>Il treno è in orario</p>
                             @else
-                                <p>Il treno è in ritardo</p>   
+                                <p class="m-0">Il treno è in ritardo</p>   
                             @endif
                         </li>
                         <li>
@@ -29,24 +29,8 @@
                             @endif
                         </li>
                     </ul>
-                </div>
-
-                
-                
+                </div>    
             @endforeach
-            
         </div>    
     </div>
-    
-    {{-- <div class="col-4">
-        <h3>{{ $train->agency }}</h3>
-        <p>{{ $train->departure_station }}</p>
-        <p>{{ $train->arrival_station }}</p>
-        <p>{{ $train->departure_time }}</p>
-        <p>{{ $train->arrival_time }}</p>
-        <p>{{ $train->train_code }}</p>
-        <p>{{ $train->number_of_carriages }}</p>
-        <p>{{ $train->in_time }}</p>
-        <p>{{ $train->deleted }}</p>
-    </div> --}}
 @endsection
