@@ -40,17 +40,39 @@ class TrainTableSeeder extends Seeder
         //     ],
 
         // ];
-        for ($i = 0; $i < 100; $i++) {
+
+        
+
+        for ($i = 0; $i < 50; $i++) {
+
+            $departureStation = $faker->city();
+            $arrivalStation = $faker->city();
+            if ($departureStation === $arrivalStation ) {
+                $arrivalStation = $faker->city();
+            }
+
+            $departureTime = $faker->dateTimeBetween('-2 day', '+1 week');
+            $arrivalTime = $faker->dateTimeBetween($departureTime, '+1 week');
+
+            $inTimeValue = $faker->numberBetween('0','1');
+            $deletedValue = $faker->numberBetween('0','1');
+            if ($deletedValue === '1' ) {
+                $inTimeValue = '0';
+            }
+
+
+            
+
             $newTrain = new Train();
             $newTrain->agency = $faker->randomElement(['TRENITALIA','ITALO']) ;
-            $newTrain->departure_station =$faker->city() ;
-            $newTrain->arrival_station =$faker->city() ;
-            $newTrain->departure_time =$faker->dateTimeBetween('-1 week', '+1 week') ;
-            $newTrain->arrival_time =$faker->dateTimeBetween('-1 week', '+1 week') ;
+            $newTrain->departure_station =$departureStation ;
+            $newTrain->arrival_station =$arrivalStation ;
+            $newTrain->departure_time =$departureTime;
+            $newTrain->arrival_time =$arrivalTime;
             $newTrain->train_code =$faker->bothify('?? ####');
             $newTrain->number_of_carriages =$faker->numberBetween(3,10) ;
-            $newTrain->in_time =$faker->numberBetween(0,1);
-            $newTrain->deleted =$faker->numberBetween(0,1);
+            $newTrain->in_time =$inTimeValue;
+            $newTrain->deleted =$faker->$deletedValue;
             $newTrain->save();
         }
     }
